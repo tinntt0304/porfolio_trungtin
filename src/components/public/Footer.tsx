@@ -17,22 +17,25 @@ export function Footer({ profile }: { profile: ProfileLinks | null }) {
   ].filter((link) => link.href);
 
   return (
-    <footer className="border-t border-neutral-200 py-8 dark:border-neutral-800">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 px-4 text-sm text-neutral-500">
-        <div className="flex gap-4">
+    <footer className="border-t border-border py-10">
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 text-center">
+        <p className="text-xs font-semibold tracking-widest text-muted uppercase">
+          {profile?.name ?? "Portfolio"}
+        </p>
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href!}
               target={link.label === "Email" ? undefined : "_blank"}
               rel="noreferrer"
-              className="hover:text-neutral-800 dark:hover:text-neutral-200"
+              className="text-xs font-semibold tracking-widest uppercase hover:opacity-60"
             >
               {link.label}
             </a>
           ))}
         </div>
-        <p>
+        <p className="text-xs text-muted">
           © {new Date().getFullYear()} {profile?.name ?? ""}
         </p>
       </div>

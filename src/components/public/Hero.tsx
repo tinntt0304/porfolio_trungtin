@@ -8,35 +8,53 @@ interface Profile {
 
 export function Hero({ profile }: { profile: Profile | null }) {
   return (
-    <section className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
-      {profile?.avatar && (
-        <div className="relative h-32 w-32 overflow-hidden rounded-full">
+    <section className="grid lg:grid-cols-2 lg:items-stretch">
+      <div className="flex flex-col justify-center gap-6 px-4 py-16 sm:px-6 sm:py-20 lg:px-12">
+        <p className="text-xs font-semibold tracking-[0.2em] text-muted uppercase">
+          Portfolio — Est. {new Date().getFullYear()}
+        </p>
+        <h1 className="text-6xl leading-[0.95] font-black tracking-tight uppercase sm:text-7xl">
+          {profile?.name ?? "Your Name"}
+          <span className="text-red-500">.</span>
+        </h1>
+        <p className="text-sm font-semibold tracking-[0.2em] text-muted uppercase sm:text-base">
+          {profile?.title ?? "Full-stack Developer"}
+        </p>
+        <div className="mt-2 flex gap-4">
+          <a
+            href="#projects"
+            className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-xs font-semibold tracking-widest text-background uppercase transition-opacity hover:opacity-80"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+            Xem dự án
+          </a>
+          <a
+            href="#contact"
+            className="rounded-full border border-foreground px-6 py-3 text-xs font-semibold tracking-widest text-foreground uppercase transition-colors hover:bg-foreground hover:text-background"
+          >
+            Liên hệ
+          </a>
+        </div>
+        <p className="mt-6 text-xs font-semibold tracking-widest text-muted uppercase">
+          Cuộn để khám phá
+        </p>
+      </div>
+
+      <div className="relative h-[60vh] w-full sm:h-[75vh] lg:h-screen">
+        {profile?.avatar ? (
           <Image
             src={profile.avatar.url}
             alt={profile.name}
             fill
-            sizes="128px"
+            priority
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
           />
-        </div>
-      )}
-      <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 sm:text-5xl">
-        {profile?.name ?? "Your Name"}
-      </h1>
-      <p className="text-lg text-neutral-500">{profile?.title ?? "Full-stack Developer"}</p>
-      <div className="flex gap-3">
-        <a
-          href="#projects"
-          className="rounded-md bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white dark:bg-neutral-100 dark:text-neutral-900"
-        >
-          Xem dự án
-        </a>
-        <a
-          href="#contact"
-          className="rounded-md border border-neutral-300 px-5 py-2.5 text-sm font-medium text-neutral-700 dark:border-neutral-700 dark:text-neutral-300"
-        >
-          Liên hệ
-        </a>
+        ) : (
+          <div className="flex h-full items-center justify-center bg-foreground/5 text-xs font-semibold tracking-widest text-muted uppercase">
+            Ảnh đại diện
+          </div>
+        )}
       </div>
     </section>
   );

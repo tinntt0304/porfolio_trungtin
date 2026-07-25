@@ -18,19 +18,19 @@ export function MobileMenuToggle({ items }: { items: MenuLink[] }) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label="Toggle menu"
-        className="rounded-md p-2 text-neutral-700 dark:text-neutral-300"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground"
       >
         {open ? "✕" : "☰"}
       </button>
       {open && (
-        <nav className="absolute inset-x-0 top-full border-t border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-950">
-          <ul className="space-y-2">
+        <nav className="absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-3xl border border-border bg-background p-4 shadow-lg">
+          <ul className="space-y-3">
             {items.map((item) => (
               <li key={item.id}>
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block text-sm text-neutral-700 dark:text-neutral-300"
+                  className="block text-xs font-semibold tracking-widest text-muted uppercase"
                 >
                   {item.label}
                 </Link>

@@ -16,28 +16,36 @@ export function Contact({ profile }: { profile: ProfileContact | null }) {
   ].filter((link) => link.href);
 
   return (
-    <section id="contact" className="mx-auto max-w-3xl px-4 py-16 text-center">
-      <h2 className="mb-4 text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
-        Liên hệ
-      </h2>
-      <p className="mb-6 text-neutral-500">
-        Bạn muốn hợp tác hoặc trao đổi công việc? Liên hệ mình qua các kênh dưới đây.
-      </p>
-      <div className="flex flex-wrap justify-center gap-4">
-        {links.map((link) => (
-          <a
-            key={link.label}
-            href={link.href!}
-            target={link.label === "Email" ? undefined : "_blank"}
-            rel="noreferrer"
-            className="rounded-md border border-neutral-300 px-4 py-2 text-sm text-neutral-700 dark:border-neutral-700 dark:text-neutral-300"
-          >
-            {link.label}
-          </a>
-        ))}
-        {links.length === 0 && (
-          <p className="text-sm text-neutral-400">Chưa có thông tin liên hệ.</p>
-        )}
+    <section
+      id="contact"
+      className="border-t border-border px-4 py-24 text-center sm:py-32"
+    >
+      <div className="mx-auto max-w-3xl">
+        <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-muted uppercase">
+          (04) — Bắt đầu
+        </p>
+        <h2 className="mb-6 text-5xl font-black tracking-tight uppercase sm:text-6xl">
+          Liên hệ.
+        </h2>
+        <p className="mb-10 text-lg text-muted">
+          Bạn muốn hợp tác hoặc trao đổi công việc? Liên hệ mình qua các kênh dưới đây.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href!}
+              target={link.label === "Email" ? undefined : "_blank"}
+              rel="noreferrer"
+              className="border border-foreground px-6 py-3 text-xs font-semibold tracking-widest uppercase transition-colors hover:bg-foreground hover:text-background"
+            >
+              {link.label}
+            </a>
+          ))}
+          {links.length === 0 && (
+            <p className="text-sm text-muted">Chưa có thông tin liên hệ.</p>
+          )}
+        </div>
       </div>
     </section>
   );

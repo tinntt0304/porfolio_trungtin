@@ -7,6 +7,13 @@ interface MenuLink {
   href: string;
 }
 
+function getInitials(name: string) {
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase() || "P";
+}
+
 export function Header({
   siteName,
   items,
@@ -15,22 +22,35 @@ export function Header({
   items: MenuLink[];
 }) {
   return (
-    <header className="relative border-b border-neutral-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-        <Link href="/" className="font-semibold text-neutral-900 dark:text-neutral-100">
-          {siteName}
+    <header className="sticky top-4 z-50 px-4">
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-background/90 px-3 py-3 backdrop-blur">
+        <Link
+          href="/"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-foreground text-sm font-black text-background"
+        >
+          {getInitials(siteName)}
         </Link>
-        <nav className="hidden gap-6 sm:flex">
+
+        <nav className="hidden items-center gap-1 rounded-full sm:flex">
           {items.map((item) => (
             <Link
               key={item.id}
               href={item.href}
-              className="text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="rounded-full px-4 py-2 text-xs font-semibold tracking-widest text-muted uppercase transition-colors hover:bg-foreground hover:text-background"
             >
               {item.label}
             </Link>
           ))}
         </nav>
+
+        <a
+          href="#contact"
+          className="hidden shrink-0 items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-xs font-semibold tracking-widest text-background uppercase sm:flex"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+          Liên hệ
+        </a>
+
         <MobileMenuToggle items={items} />
       </div>
     </header>
