@@ -1,17 +1,11 @@
 import Link from "next/link";
 import { MobileMenuToggle } from "./MobileMenuToggle";
+import { getInitials } from "@/lib/text";
 
 interface MenuLink {
   id: string;
   label: string;
   href: string;
-}
-
-function getInitials(name: string) {
-  const parts = name.trim().split(/\s+/);
-  const first = parts[0]?.[0] ?? "";
-  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
-  return (first + last).toUpperCase() || "P";
 }
 
 export function Header({

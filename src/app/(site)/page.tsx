@@ -4,6 +4,7 @@ import { About } from "@/components/public/About";
 import { Skills } from "@/components/public/Skills";
 import { Projects } from "@/components/public/Projects";
 import { Contact } from "@/components/public/Contact";
+import { LoadingScreen } from "@/components/public/LoadingScreen";
 
 export default async function HomePage() {
   const [profile, skills, projects] = await Promise.all([
@@ -17,6 +18,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <LoadingScreen name={profile?.name} />
       <Hero profile={profile} />
       <About bio={profile?.bio} />
       <Skills skills={skills} />
